@@ -91,6 +91,17 @@ class CORE
 		}
 	}
 
+	public function getBikeInfo($id) {
+		$stmt = $this->conn->prepare("SELECT * FROM products WHERE id=:id");
+		$stmt->execute(array(":id"=>$id));
+		$PS = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		if ($stmt->rowCount() == 0) {
+			return false;
+		} else {
+			return $PS;
+		}
+	}
+
 	public function getBikes($order = 1) {
     switch($order) {
       case 1:
@@ -105,11 +116,17 @@ class CORE
       case 4:
         $orderBy = "price DESC";
         break;
+      case 5:
+        $orderBy = "modelYear ASC, name ASC";
+        break;
+      case 6:
+        $orderBy = "modelYear DESC, name ASC";
+        break;
       default:
         $orderBy = "name ASC";
         break;
     }
-		$stmt = $this->conn->prepare("SELECT * FROM products ORDER BY ".$orderBy);
+		$stmt = $this->conn->prepare("SELECT id, name, brand, colors, imagePath, model, price, actionPrice, IF(actionPrice IS NULL, false, true) as isAction FROM products ORDER BY ".$orderBy);
 		$stmt->execute();
 		$PS = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		if ($stmt->rowCount() == 0) {
