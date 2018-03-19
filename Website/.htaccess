@@ -9,6 +9,12 @@ Options -Indexes
 RewriteCond %{REQUEST_FILENAME}\.php -f [NC]
 RewriteRule ^(.+?)/?$ $1.php
 
+# Allow id and name after /fietsen
+RewriteCond %{THE_REQUEST} \s/+fietsen(?:\.php)?\?id=([a-z,A-Z,0-9]+) [NC]
+RewriteRule ^ fietsen/%1? [R,L]
+RewriteRule ^fietsen/([a-z,A-Z,0-9]+)/?$ fietsen.php?id=$1 [L,QSA]
+RewriteRule ^fietsen/([a-z,A-Z,0-9]+)/(.*)/?$ fietsen.php?id=$1&name=$2 [L,QSA]
+
 # Forward to Home
 Redirect /index /home
 Redirect /index.php /home
