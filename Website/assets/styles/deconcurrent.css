@@ -23,6 +23,8 @@ body {
 /* NAVBAR */
 
 nav {
+  position: fixed;
+  top: 0;
   background: whitesmoke;
   width: 100%;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -67,6 +69,10 @@ nav .nav-logo {
   height: 50px;
 }
 
+.navbar-top {
+  height: 50px;
+}
+
 /* CARDS */
 
 .card-row {
@@ -102,6 +108,7 @@ nav .nav-logo {
   vertical-align: middle;
   max-width: 90%;
   max-height: 170px;
+  margin-top: 8px;
 }
 
 .card-content {
