@@ -1,5 +1,6 @@
 <nav>
   <div class="navbar-left"></div>
+  <a href="#"><img class="nav-logo" src="/assets/images/logo.png"></a>
   <a href="/home" class="nav-item<?php if ($pageTitle == "Home") { echo " active"; } ?>">Home</a>
   <a href="/fietsen" class="nav-item<?php if ($pageTitle == "Fietsen") { echo " active"; } ?>">Fietsen</a>
   <a href="/reparatie" class="nav-item<?php if ($pageTitle == "Reparatie") { echo " active"; } ?>">Reparatie</a>
