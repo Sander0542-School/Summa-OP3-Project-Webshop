@@ -26,7 +26,7 @@ if (isset($_GET["id"])) {
       echo '
         <div onclick="window.location.href=\'/fietsen/'.$bike["id"].'/'. strtolower(preg_replace("/[^a-zA-Z0-9,-]+/", "", str_replace(" ", "-", $bike["name"]))).'\'" class="card">
           <div class="card-image">
-            <span></span><img src="'.$bike["imagePath"].'">
+            <span></span><img alt="'.$bike["name"].'" src="'.$bike["imagePath"].'">
           </div>
           <div class="card-content">
             <h3>'.$bike["brand"].' '.$bike["name"].'</h3>'; 
