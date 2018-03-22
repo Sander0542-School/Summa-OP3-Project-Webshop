@@ -14,7 +14,7 @@ $CORE = new CORE();
     <link rel="stylesheet" type="text/css" href="/assets/styles/deconcurrent.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   </head>
-  <body>
+  <body onload="onReseize()" onscroll="onReseize()" onpageshow="onReseize()">
 
 <!-- Navbar -->
 <?php
