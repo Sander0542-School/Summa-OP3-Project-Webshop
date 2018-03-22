@@ -11,7 +11,6 @@ if (isset($_GET["id"])) {
     <div class="row">
       <div class="col col1>"></div>
       <div class="col col10">
-        
       </div>
     </div>';
   }
@@ -19,6 +18,12 @@ if (isset($_GET["id"])) {
   $bikesList = $CORE->getBikes();
   if ($bikesList) {
     echo '
+    <div class="row page-head margin-top">
+      <div class="col col1"></div>
+      <div class="col col8">
+        <h2>Onze Fietsen</h2>
+      </div>
+    </div>
     <div class="row">
       <div class="col col1"></div>
       <div class="col col8 card-row">';
@@ -48,7 +53,6 @@ if (isset($_GET["id"])) {
     </div>';
 }
 ?>
-
 
 <?php
 include "assets/footer.php"

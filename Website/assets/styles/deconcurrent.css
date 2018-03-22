@@ -100,7 +100,8 @@ nav .nav-logo {
 }
 
 .footer img {
-  width: 100%;
+  width: 80%;
+  padding: 5%;
 }
 
 .footer .copyright {
@@ -116,9 +117,9 @@ nav .nav-logo {
   text-decoration: underline;
 }
 
-/* HOME PAGE */
+/* PAGE HEAD */
 
-.home h2 {
+.page-head h2 {
   color: var(--accentcolor);
 }
 
@@ -130,11 +131,11 @@ nav .nav-logo {
 }
 
 .card {
-  width: 28%;
+  width: 30%;
   border: 1px solid transparent;
   border-radius: 4px;
   float: left;
-  margin: 2.58567%;
+  margin: 1.584934%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   cursor: pointer;
 }
@@ -185,6 +186,13 @@ nav .nav-logo {
 
 .img-homepage {
   width: 100%;
+  margin-top: 20px;
+}
+
+/* REPARATIE */
+
+.reparatie-form .form-group {
+  display: grid;
 }
 
 /* ROWS & COLUMNS */

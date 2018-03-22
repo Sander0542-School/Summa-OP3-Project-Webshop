@@ -3,7 +3,7 @@ $pageTitle = "Home";
 include "assets/header.php";
 ?>
 
-    <div class="row home margin-top">
+    <div class="row page-head margin-top">
       <div class="col col1"></div>
       <div class="col col3">
         <h2>Welkom op de website van De Concurrent</h2>
