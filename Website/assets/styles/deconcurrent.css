@@ -24,6 +24,10 @@ p, a {
   color: var(--textcolor);
 }
 
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
 /* NAVBAR */
 
 nav {
@@ -84,7 +88,7 @@ nav .nav-logo {
   margin-top: 30px;
   width: 100%;
   bottom: 0;
-  position: fixed;
+  position: relative;
 }
 
 .footer-dark {
@@ -117,10 +121,31 @@ nav .nav-logo {
   text-decoration: underline;
 }
 
+#footer-above {
+  width: 100%;
+}
+
+/* HOME PAGE */
+
+.home-subtitle {
+  color: var(--accentcolor);
+  width: 100%;
+  text-align: center;
+}
+
 /* PAGE HEAD */
 
 .page-head h2 {
   color: var(--accentcolor);
+}
+
+/* HR */
+
+hr {
+  height: 0;
+  border: 0;
+  border-top: 1px solid var(--accentcolor);
+  margin-top: 21px;
 }
 
 /* CARDS */
@@ -189,10 +214,46 @@ nav .nav-logo {
   margin-top: 20px;
 }
 
-/* REPARATIE */
+/* FORM */
 
-.reparatie-form .form-group {
+.form-group {
   display: grid;
+}
+
+.form-group {
+  padding-bottom: 4px;
+  padding-top: 4px;
+}
+
+.form-group textarea {
+  resize: none;
+}
+
+.form-group input[type=text], .form-group input[type=email], .form-group input[type=password], .form-group input[type=number], .form-group textarea {
+  padding: 6px 12px;
+  border: 1.5px solid var(--accentcolor);
+  border-radius: 4px;
+  outline: 0;
+  margin-top: 4px;
+}
+
+form input[type=submit] {
+  padding: 10px 20px;
+  background-color: var(--accentcolor);
+  outline: none;
+  border: 1px solid var(--accentcolor);
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.form-group > label, .form-group > input, .form-group > textarea {
+  font-size: 16px;
+}
+
+form input.block {
+  width: 100%;
 }
 
 /* ROWS & COLUMNS */
@@ -291,4 +352,18 @@ nav .nav-logo {
 
 .col10 {
   width: 100%;
+}
+
+/* POPUP */
+
+.messagebox {
+  margin: 20px 15%;
+  background-color: var(--accentcolor);
+  border-radius: 8px;
+}
+
+.messagebox h3 {
+  padding: 10px;
+  text-align: center;
+  color: white;
 }

@@ -61,19 +61,25 @@ class CORE
   
   public function register($email, $firstname, $lastname, $password, $phoneNumber, $city, $zipcode, $street, $houseNumber) 
   {
-    $stmt = $this->conn->prepare("INSERT INTO users (email, firstname, lastname, password, phoneNumber, city, zipcode, street, houseNumber) VALUES(:email, :firstname, :lastname, :password, :phoneNumber, :city, :zipcode, :street, :houseNumber);");
-    $stmt->bindparam(":email",$email);
-    $stmt->bindparam(":firstname",$firstname);
-    $stmt->bindparam(":lastname",$lastname);
-    $stmt->bindparam(":password",$password);
-    $stmt->bindparam(":phoneNumber",$phoneNumber);
-    $stmt->bindparam(":city",$city);
-    $stmt->bindparam(":zipcode",$zipcode);
-    $stmt->bindparam(":street",$street);
-    $stmt->bindparam(":houseNumber",$houseNumberme);
-    $stmt->execute();
+		try {
+			$stmt = $this->conn->prepare("INSERT INTO users (email, firstname, lastname, password, phoneNumber, city, zipcode, street, houseNumber) VALUES(:email, :firstname, :lastname, :password, :phoneNumber, :city, :zipcode, :street, :houseNumber);");
+			$stmt->bindparam(":email",$email);
+			$stmt->bindparam(":firstname",$firstname);
+			$stmt->bindparam(":lastname",$lastname);
+			$stmt->bindparam(":password",$password);
+			$stmt->bindparam(":phoneNumber",$phoneNumber);
+			$stmt->bindparam(":city",$city);
+			$stmt->bindparam(":zipcode",$zipcode);
+			$stmt->bindparam(":street",$street);
+			$stmt->bindparam(":houseNumber",$houseNumberme);
+			$stmt->execute();
 
-    $_SESSION['userSession'] = $this->lastID();
+			$_SESSION['userSession'] = $this->lastID();
+
+			return true;
+		} catch (PDOException $ex) {
+			return $ex->getMessage();
+		}
   }
 
 	public function login($email, $password)

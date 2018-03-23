@@ -1,3 +1,6 @@
-<?php include "footer/content.php"; ?>
+<?php 
+include "footer/content.php";
 
-<?php include "footer/scripts.php"; ?>
+if (isset($footerScript)) {
+  include "footer/scripts.php";
+}

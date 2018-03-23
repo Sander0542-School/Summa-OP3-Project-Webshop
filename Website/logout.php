@@ -1,5 +1,6 @@
 <?php
 $pageTitle = "Loguit";
+$footerScript = true;
 include "assets/header.php";
 ?>
 
