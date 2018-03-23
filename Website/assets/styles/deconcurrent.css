@@ -28,6 +28,10 @@ p, a {
   font-family: 'Roboto', sans-serif;
 }
 
+label {
+  color: var(--textcolor);
+}
+
 /* NAVBAR */
 
 nav {

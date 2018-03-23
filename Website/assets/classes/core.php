@@ -62,7 +62,7 @@ class CORE
   public function register($email, $firstname, $lastname, $password, $phoneNumber, $city, $zipcode, $street, $houseNumber) 
   {
 		try {
-			$stmt = $this->conn->prepare("INSERT INTO users (email, firstname, lastname, password, phoneNumber, city, zipcode, street, houseNumber) VALUES(:email, :firstname, :lastname, :password, :phoneNumber, :city, :zipcode, :street, :houseNumber);");
+			$stmt = $this->conn->prepare("INSERT INTO customers (email, firstname, lastname, password, phoneNumber, city, zipcode, street, houseNumber) VALUES(:email, :firstname, :lastname, :password, :phoneNumber, :city, :zipcode, :street, :houseNumber);");
 			$stmt->bindparam(":email",$email);
 			$stmt->bindparam(":firstname",$firstname);
 			$stmt->bindparam(":lastname",$lastname);
@@ -71,14 +71,14 @@ class CORE
 			$stmt->bindparam(":city",$city);
 			$stmt->bindparam(":zipcode",$zipcode);
 			$stmt->bindparam(":street",$street);
-			$stmt->bindparam(":houseNumber",$houseNumberme);
+			$stmt->bindparam(":houseNumber",$houseNumber);
 			$stmt->execute();
 
 			$_SESSION['userSession'] = $this->lastID();
 
 			return true;
 		} catch (PDOException $ex) {
-			return $ex->getMessage();
+			return false;
 		}
   }
 

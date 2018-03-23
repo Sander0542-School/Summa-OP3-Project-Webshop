@@ -35,7 +35,7 @@ include "assets/header.php";
       </div>
       <div class="col col1"></div>
       <div class="col col2-5">
-        <img src="/assets/images/gazelle.png" alt="Gazelle" width="100%">
+        <img src="/assets/images/gazelle.png" alt="Gazelle" width="100%"><br/><br/>
       </div>
     </div>
 
