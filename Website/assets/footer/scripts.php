@@ -1,9 +1,10 @@
     <script>
-      function onReseize() {
-        if (document.body.offsetHeight > screen.height) {
-          document.getElementById("footer").style.position = "relative";
+      document.addEventListener("DOMContentLoaded", function(event) {
+        var footer = document.getElementById("footer");
+        if (document.body.clientHeight > window.innerHeight) {
+          footer.style.position = 'relative';
         } else {
-          document.getElementById("footer").style.position = "fixed";
+          footer.style.position = 'fixed';
         }
-      }
+      });
     </script>

@@ -12,9 +12,8 @@ $CORE = new CORE();
     <title><?php if (isset($pageTitle)) { echo $pageTitle; } else { echo "Pagina"; } ?> | De Concurrent</title>
 
     <link rel="stylesheet" type="text/css" href="/assets/styles/deconcurrent.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   </head>
-  <body onload="onReseize()" onresize="onReseize()">
+  <body>
 
 <!-- Navbar -->
 <?php
