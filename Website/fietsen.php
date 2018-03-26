@@ -8,9 +8,50 @@ if (isset($_GET["id"])) {
   $bikeInfo = $CORE->getBikeInfo($_GET["id"]);
   if ($bikeInfo) {
     echo '
-    <div class="row">
-      <div class="col col1>"></div>
-      <div class="col col10">
+    <div class="row page-head margin-top">
+      <div class="col col1"></div>
+      <div class="col col3-5">
+        <div class="card padding">
+          <div class="card-content">
+            <h2>'.$bikeInfo["brand"].' '.$bikeInfo["name"].'</h2>
+            <div class="row">
+              <div class="col col7">'; 
+            if ($bikeInfo["isAction"]) {
+              echo '
+                  <p><span class="advies-price">Adviesprijs</span> <span class="old-price">'.$bikeInfo["price"].',-</span><br/><span class="current-price-big">'.$bikeInfo["actionPrice"].',-</span></p>';
+            } else {
+              echo '
+                  <p class="current-price">'.$bikeInfo["price"].',-</p>';
+            } echo '
+              </div>
+              <div class="col col3" style="position:relative">
+                <form action="/bestellen" method="POST">
+                  <input type="hidden" name="bikeID" value="'.$bikeInfo["id"].'">
+                  <input type="submit" class="block bottom" value="Bestel">
+                </form>
+              </div>
+            </div>
+            <hr>
+            <h3>Omschrijving</h3>
+            <p>'.$bikeInfo["description"].'</p>
+            <hr>
+            <h3>Eigenschappen</h3>
+            <p>
+              <b>Merk:</b> '.$bikeInfo["brand"].'<br/>
+              <b>Model:</b> '.$bikeInfo["model"].'<br/>
+              <b>Modeljaar:</b> '.$bikeInfo["modelYear"].'<br/>
+              <b>Merk:</b> '.$bikeInfo["brand"].'<br/>
+              <b>Kleuren:</b> '.$bikeInfo["colors"].'
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col col4-5">
+        <div class="card padding">
+          <div class="card-content">
+            <img alt="'.$bikeInfo["name"].'" width="100%" src="'.$bikeInfo["imagePath"].'">
+          </div>
+        </div>
       </div>
     </div>';
   }

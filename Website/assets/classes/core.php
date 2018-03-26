@@ -29,11 +29,11 @@ class CORE
 		return $stmt;
 	}
 
-	public function isIngelogd()
+	public function isLoggedIn()
 	{
 		if(isset($_SESSION['userSession']))
 		{
-			$stmt = $this->conn->prepare("SELECT * FROM gebruikers WHERE id=:id");
+			$stmt = $this->conn->prepare("SELECT * FROM customers WHERE id=:id");
 			$stmt->execute(array(":id"=>$_SESSION['userSession']));
 			$userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 			if ($stmt->rowCount() == 1) {
@@ -98,13 +98,13 @@ class CORE
 	}
 
 	public function getBikeInfo($id) {
-		$stmt = $this->conn->prepare("SELECT * FROM products WHERE id=:id");
+		$stmt = $this->conn->prepare("SELECT *, IF(actionPrice IS NULL, false, true) as isAction FROM products WHERE id=:id");
 		$stmt->execute(array(":id"=>$id));
 		$PS = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		if ($stmt->rowCount() == 0) {
 			return false;
 		} else {
-			return $PS;
+			return $PS[0];
 		}
 	}
 

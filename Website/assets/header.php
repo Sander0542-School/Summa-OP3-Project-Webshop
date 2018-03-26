@@ -2,6 +2,11 @@
 session_start();
 include "classes/core.php";
 $CORE = new CORE();
+if ($CORE->isLoggedIn())  {
+  $stmt = $CORE->runQuery("SELECT * FROM customers WHERE id=:id");
+  $stmt->execute(array(":id"=>$_SESSION['userSession']));
+  $U_DATA = $stmt->fetch(PDO::FETCH_ASSOC);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

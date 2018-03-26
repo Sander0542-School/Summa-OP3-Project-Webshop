@@ -32,6 +32,10 @@ label {
   color: var(--textcolor);
 }
 
+h1, h2, h3 {
+  color: var(--accentcolor);
+}
+
 /* NAVBAR */
 
 nav {
@@ -49,7 +53,7 @@ nav * {
   float: left;
 }
 
-nav .nav-item {
+nav .nav-item, nav .dropdown-content a {
   color: black;
   text-decoration: none;
   font-size: 18px;
@@ -57,11 +61,11 @@ nav .nav-item {
   display: inline-block;
 }
 
-nav .nav-item.right {
+nav .right {
   float: right;
 }
 
-nav .nav-item.active, nav .nav-item:hover {
+nav .nav-item.active, nav .nav-item:hover, .dropdown-content a:hover {
   background: var(--accentcolor);
   color: white;
 }
@@ -83,6 +87,39 @@ nav .nav-logo {
 
 .navbar-top {
   height: 60px;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: whitesmoke;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  margin-top: 52px;
+  min-width: 160px;
+}
+
+.dropdown-link {
+  min-width: 160px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  position: fixed;
+  min-width: 160px;
+}
+
+.dropdown-content a {
+  display: block !important;
+  float: none;
+  text-decoration: none;
+  text-align: left;
+  min-width: 160px;
 }
 
 /* FOOTER */
@@ -160,30 +197,40 @@ hr {
 }
 
 .card {
-  width: 30%;
+  width: 94%;
+  margin-left: 3%;
   border: 1px solid transparent;
   border-radius: 4px;
   float: left;
-  margin: 1.584934%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-row .card {
+  width: 30%;
+  margin: 1.584934%;
   cursor: pointer;
 }
 
-.card:hover {
+.card.full-width {
+  width: 100%;
+  margin: 0;
+}
+
+.card-row .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 16px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
-.card-image {
+.card-row .card-image {
   text-align: center;
 }
 
-.card-image > span {
+.card-row .card-image > span {
   display: inline-block;
   vertical-align: middle;
   height: 100%;
 }
 
-.card-image img {
+.card-row .card-image img {
   vertical-align: middle;
   max-width: 90%;
   max-height: 170px;
@@ -200,8 +247,24 @@ hr {
   font-size: 13px;
 }
 
+.card-content .advies-price {
+  color: var(--textcolor);
+  font-size: 13px;
+}
+
+.card-content .spec-name {
+  color: var(--textcolor);
+  font-size: 15px;
+}
+
 .card-content .current-price {
   font-size: 22px;
+  color: var(--accentcolor);
+  font-weight: 600;
+}
+
+.card-content .current-price-big {
+  font-size: 28px;
   color: var(--accentcolor);
   font-weight: 600;
 }
@@ -370,4 +433,24 @@ form input.block {
   padding: 10px;
   text-align: center;
   color: white;
+}
+
+/* BOTTOM */
+
+.bottom {
+  position: absolute;
+  bottom: 0
+}
+
+/* SHOPPINGCART */
+
+.shoppingcart-item img {
+  width: 80%;
+  padding-left: 10%;
+}
+
+.shoppingcart-order {
+  float: right;
+  margin: 8px;
+  width: 20%;
 }

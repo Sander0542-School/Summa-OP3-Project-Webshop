@@ -1,5 +1,5 @@
 <?php
-$pageTitle = "Bestellingen";
+$pageTitle = "Mijn Bestellingen";
 include "assets/header.php";
 ?>
 
