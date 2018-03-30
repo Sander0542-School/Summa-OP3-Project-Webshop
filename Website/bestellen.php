@@ -2,26 +2,40 @@
 $pageTitle = "Winkelwagen";
 include "assets/header.php";
 
-if (isset($_POST["bikeID"])) {
-  if (empty($_SESSION["shoppingcart"])) {
-    $_SESSION["shoppingcart"] = array();
-  }
-  array_push($_SESSION["shoppingcart"], array($_POST["bikeID"], 1));
-}
+$isLoggedIn = $CORE->isLoggedIn();
 
-if (!empty($_SESSION["shoppingcart"])) {
-  $bikeItems = array();
-  foreach ($_SESSION["shoppingcart"] as $bike) {
-    if ($bikeItems[$bike][1] > 0) {
-      $bikeItems[$bike] = array($bike, $bikeItems[$bike][1] + 1);
-    } else {
-      $bikeItems[$bike] = array($bike, 1);
-    }
+$displayShoppingCart = true;
+
+if (isset($_POST["bestel"]) && $isLoggedIn) {
+  if ($CORE->orderShoppingCart()) {
+    echo '<div class="messagebox"><h3>Uw bestelling is geplaatst</h3></div>';
+    $CORE->emptyShoppingCart();
+  } else {
+    echo '<div class="messagebox"><h3>Kon uw bestelling niet plaatsen</h3></div>';
   }
-  $_SESSION["shoppingcart"] = $bikeItems;
+  $displayShoppingCart = false;
+} elseif (isset($_POST["bikeID"]) && $isLoggedIn) {
+  $CORE->updateShoppingCart($_SESSION['userSession'], $_POST["bikeID"]);
+} elseif (isset($_POST["bikeID"]) && isset($_POST["customerID"])) {
+  $CORE->updateShoppingCart($_POST["customerID"], $_POST["bikeID"]);
+} elseif (isset($_POST["deleteBike"]) && $isLoggedIn) {
+  if ($CORE->deleteItemFromShoppingCart($_POST["deleteBike"])) {
+    echo '<div class="messagebox"><h3>Fiets verwijderd uit winkelwagen</h3></div>';
+  } else {
+    echo '<div class="messagebox"><h3>Kon uw fiets niet verwijderen uit de winkelwagen</h3></div>';
+  }
 }
 ?>
 
+<?php
+if ($displayShoppingCart) {
+  if ($CORE->isLoggedIn()) {
+    $shoppingCart = $CORE->getShoppingCart();
+    if ($shoppingCart) {
+      $bikesPrice = 0;
+      $bikesCount = 0;
+
+      echo '
     <div class="row page-head margin-top">
       <div class="col col1"></div>
       <div class="col col8">
@@ -29,9 +43,6 @@ if (!empty($_SESSION["shoppingcart"])) {
       </div>
     </div>
 
-<?php
-if (!empty($_SESSION["shoppingcart"])) {
-  echo '
     <div class="row">
       <div class="col col1"></div>
       <div class="col col8">
@@ -42,38 +53,54 @@ if (!empty($_SESSION["shoppingcart"])) {
                 <thead>
                   <tr>
                     <td width="8%"></td>
-                    <td width="62%">Naam</td>
+                    <td width="57%">Naam</td>
                     <td width="15%">Prijs</td>
                     <td width="15%">Aantal</td>
+                    <td width="5%"></td>
                   </tr>
                 </thead>
                 <tbody>';
 
-  foreach ($_SESSION["shoppingcart"] as $bike) {
-    $bikeInfo = $CORE->getBikeInfo($bike[1]);
-  
-    if ($bikeInfo) {
-      echo '
-                  <tr class="shoppingcart-item">
-                    <td><img src="'.$bikeInfo["imagePath"].'" alt=".$bikeInfo["name"]."></td>
-                    <td>'.$bikeInfo["name"].'</td>
-                    <td>'.$bikeInfo["price"].'</td>
-                    <td>1</td>
-                  </tr>';
-    }
-  }
+      foreach ($shoppingCart as $bike) {
+        $bikesPrice = $bikesPrice + (($bike["isAction"] == true ? $bike["actionPrice"] : $bike["price"]) * $bike["quantity"]);
+        $bikesCount = $bikesCount + $bike["quantity"];
 
-  echo '
+        echo '
+                  <tr class="shoppingcart-item">
+                    <td><img src="'.$bike["imagePath"].'" alt="'.$bike["name"].'"></td>
+                    <td>'.$bike["name"].'</td>
+                    <td>&euro;'; if ($bike["isAction"]) {echo $bike["actionPrice"]; } else { echo $bike["price"]; } echo ',-</td>
+                    <td>'.$bike["quantity"].'</td>
+                    <td>
+                      <form action="/bestellen" method="POST">
+                        <input type="hidden" value="'.$bike["id"].'" name="deleteBike">
+                        <input type="submit" value="&#10006;">
+                      </form>
+                    </td>
+                  </tr>';
+      }
+
+      echo '
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td><strong>Totaal: &euro;'.$bikesPrice.',-</strong></td>
+                    <td><strong>Totaal: '.$bikesCount.'</strong></td>
+                  </tr>
                 </tbody>
-              </table>
-              <input type="submit" class="shoppingcart-order" value="Bestel">
+              </table><br/>
+              <input type="submit" class="shoppingcart-order" name="bestel" value="Bestel">
             </form>
           </div>
         </div>
       </div>
     </div>';
-} else {
-  echo '<div class="messagebox"><h3>U heeft geen items in uw winkelwagen</h3></div>';
+    } else {
+      echo '<div class="messagebox"><h3>U heeft geen fietsen in uw winkelwagen</h3></div>';
+    }
+  } else {
+    echo '<div class="messagebox"><h3>U moet inloggen om fietsen te kunnen bestellen</h3></div>';
+  }
 }
 ?>
 
