@@ -63,7 +63,7 @@ if (isset($_POST["firstname"]) && isset($_POST["lastname"]) && isset($_POST["ema
               </div>
               <div class="form-group">
                 <label for="zipcode">Postcode</label>
-                <input type="text" pattern="^[1-9][0-9]{3} ?(?!sa|sd|ss)[a-zA-Z]{2}$" title="Postcode (1234 AB)" name="zipcode"<?php if (isset($_POST["zipcode"])) { echo 'value="'.$_POST["zipcode"].'"'; } ?> required>
+                <input type="text" pattern="^[1-9][0-9]{3} ?(?!sa|sd|ss)[a-zA-Z]{2}$" title="Postcode (1234AB)" name="zipcode"<?php if (isset($_POST["zipcode"])) { echo 'value="'.$_POST["zipcode"].'"'; } ?> required>
               </div>
               <div class="form-group">
                 <label for="street">Straat</label>
@@ -75,7 +75,9 @@ if (isset($_POST["firstname"]) && isset($_POST["lastname"]) && isset($_POST["ema
               </div>
             </div>
           </div>
-          <input type="submit" class="block" value="Registreer"><br/><br/>
+          <input type="submit" class="block" value="Registreer">
+          <hr>
+          <p class="form-below">Al een account? Klik <a href="/login">hier</a> om in te loggen</p>
         </div>
       </div>
     </form>
