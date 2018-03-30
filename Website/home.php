@@ -31,11 +31,11 @@ include "assets/header.php";
     <div class="row">
       <div class="col col2"></div>
       <div class="col col2-5">
-        <img src="/assets/images/batavus.png" alt="Batavus" width="100%">
+        <img src="/assets/images/batavus.png" alt="Batavus" class="brand-logo">
       </div>
       <div class="col col1"></div>
       <div class="col col2-5">
-        <img src="/assets/images/gazelle.png" alt="Gazelle" width="100%"><br/><br/>
+        <img src="/assets/images/gazelle.png" alt="Gazelle" class="brand-logo"><br/><br/>
       </div>
     </div>
 
