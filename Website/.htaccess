@@ -5,15 +5,20 @@ RewriteBase /
 # Disable Indexing
 Options -Indexes
 
-# Remove PHP Extension
-RewriteCond %{REQUEST_FILENAME}\.php -f [NC]
-RewriteRule ^(.+?)/?$ $1.php
-
 # Allow id and name after /fietsen
 RewriteCond %{THE_REQUEST} \s/+fietsen(?:\.php)?\?id=([a-z,A-Z,0-9]+) [NC]
 RewriteRule ^ fietsen/%1? [R,L]
 RewriteRule ^fietsen/([a-z,A-Z,0-9]+)/?$ fietsen.php?id=$1 [L,QSA]
 RewriteRule ^fietsen/([a-z,A-Z,0-9]+)/(.*)/?$ fietsen.php?id=$1&name=$2 [L,QSA]
+
+# Allow id after /bestellingen
+RewriteCond %{THE_REQUEST} \s/+bestellingen(?:\.php)?\?id=([a-z,A-Z,0-9]+) [NC]
+RewriteRule ^ bestellingen/%1? [R,L]
+RewriteRule ^bestellingen/([a-z,A-Z,0-9]+)/?$ bestellingen.php?id=$1 [L,QSA]
+
+# Remove PHP Extension
+RewriteCond %{REQUEST_FILENAME}\.php -f [NC]
+RewriteRule ^(.+?)/?$ $1.php
 
 # Forward to Home
 Redirect /index /home
