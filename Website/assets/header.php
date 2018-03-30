@@ -9,6 +9,7 @@ if ($CORE->isLoggedIn())  {
 }
 setlocale(LC_ALL, 'nl_NL', 'nld_nld');
 
+$currentUrl = str_replace(".php","",$_SERVER['PHP_SELF']);
 if (strpos($_SERVER['PHP_SELF'], "/fietsen.php") !== false) {
   if (isset($_GET["id"])) {
     $currentUrl = str_replace(".php","",$_SERVER['PHP_SELF'])."/".$_GET["id"];
@@ -16,8 +17,6 @@ if (strpos($_SERVER['PHP_SELF'], "/fietsen.php") !== false) {
       $currentUrl = $currentUrl."/".$_GET["name"];
     }
   }
-} else {
-  $currentUrl = str_replace(".php","",$_SERVER['PHP_SELF']);
 }
 ?>
 <!DOCTYPE html>
