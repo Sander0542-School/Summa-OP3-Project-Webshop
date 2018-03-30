@@ -1,6 +1,16 @@
 <?php
 $pageTitle = "Reparatie";
 include "assets/header.php";
+
+$isLoggedIn = $CORE->isLoggedIn();
+
+if (isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["subject"]) && isset($_POST["message"])) {
+  if ($CORE->newReperation(($isLoggedIn ? $_SESSION["userSession"] : null), $_POST["name"], $_POST["email"], $_POST["subject"], $_POST["message"])) {
+    echo '<div class="messagebox"><h3>Uw reparatie verzoek is verzonden</h3></div>';
+  } else {
+    echo '<div class="messagebox"><h3>Kon uw reparatie verzoek niet verzenden</h3></div>';
+  }
+}
 ?>
 
     <div class="row page-head margin-top">
@@ -20,19 +30,19 @@ include "assets/header.php";
         <form class="reparatie-form" action="/reparatie" method="POST">
           <div class="form-group">
             <label for="naam">Naam</label>
-            <input type="text" name="name">
+            <input type="text" name="name"<?php if ($isLoggedIn) { echo ' value="'.$U_DATA["firstname"].' '.$U_DATA["lastname"].'"'; } ?> required>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" name="email">
+            <input type="email" name="email"<?php if ($isLoggedIn) { echo ' value="'.$U_DATA["email"].'"'; } ?> required>
           </div>
           <div class="form-group">
             <label for="subject">Onderwerp</label>
-            <input type="text" name="subject">
+            <input type="text" name="subject" required>
           </div>
           <div class="form-group">
-            <label for="message">Naam</label>
-            <textarea rows="5" name="message"></textarea><br/>
+            <label for="message">Omschrijving van het probleem</label>
+            <textarea rows="5" name="message" required></textarea><br/>
           </div>
           <input type="submit" value="Verzend">
         </form>
