@@ -10,19 +10,19 @@
 if ($CORE->isLoggedIn()) {
   echo '
       <div class="dropdown right">
-        <a href="/login" class="nav-item dropdown-link'; if ($pageTitle == "Mijn Account" || $pageTitle == "Mijn Bestellingen") { echo " active"; } echo '">'.$U_DATA["firstname"].' '.$U_DATA["lastname"].'</a>
+        <a class="nav-item dropdown-link pointer'; if ($pageTitle == "Mijn Account" || $pageTitle == "Mijn Bestellingen") { echo " active"; } echo '">'.$U_DATA["firstname"].' '.$U_DATA["lastname"].'</a>
         <div class="dropdown-content">
           <a href="/account">Mijn Account</a>
           <a href="/bestellingen">Mijn Bestellingen</a>
-          <a href="/logout?returnUrl='.str_replace(".php", "", $_SERVER["PHP_SELF"]).'">Logout</a>
+          <a href="/logout?returnUrl='.str_replace(".php", "", $currentUrl).'">Logout</a>
         </div>
-      </div> ';
+      </div>
+      <a href="/bestellen" class="nav-item right'; if ($pageTitle == "Winkelwagen") { echo " active"; } echo '">Winkelwagen</a>';
 } else {
   echo '
-      <a href="/login?returnUrl='.str_replace(".php", "", $_SERVER["PHP_SELF"]).'" class="nav-item right'; if ($pageTitle == "Login") { echo " active"; } echo '">Login</a>
+      <a href="/login?returnUrl='.str_replace(".php", "", $currentUrl).'" class="nav-item right'; if ($pageTitle == "Login") { echo " active"; } echo '">Login</a>
       <a href="/registreer" class="nav-item right'; if ($pageTitle == "Registreer") { echo " active"; } echo '">Registreer</a>';
 }
 ?>
-      <a href="/bestellen" class="nav-item right<?php if ($pageTitle == "Bestellen") { echo " active"; } ?>">Winkelwagen</a>
     </nav>
     <div class="navbar-top"></div>

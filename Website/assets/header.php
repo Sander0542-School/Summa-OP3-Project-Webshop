@@ -7,6 +7,18 @@ if ($CORE->isLoggedIn())  {
   $stmt->execute(array(":id"=>$_SESSION['userSession']));
   $U_DATA = $stmt->fetch(PDO::FETCH_ASSOC);
 }
+setlocale(LC_ALL, 'nl_NL', 'nld_nld');
+
+if (strpos($_SERVER['PHP_SELF'], "/fietsen.php") !== false) {
+  if (isset($_GET["id"])) {
+    $currentUrl = str_replace(".php","",$_SERVER['PHP_SELF'])."/".$_GET["id"];
+    if (isset($_GET["name"])) {
+      $currentUrl = $currentUrl."/".$_GET["name"];
+    }
+  }
+} else {
+  $currentUrl = str_replace(".php","",$_SERVER['PHP_SELF']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
