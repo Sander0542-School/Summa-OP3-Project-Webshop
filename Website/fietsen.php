@@ -8,6 +8,9 @@ if (isset($_GET["id"])) {
   $bikeInfo = $CORE->getBikeInfo($_GET["id"]);
   if ($bikeInfo) {
     echo '
+    <script>
+      document.title = "'. $bikeInfo["name"].' | De Concurrent";
+    </script>
     <div class="row page-head margin-top">
       <div class="col col1"></div>
       <div class="col col3-5">
@@ -24,11 +27,20 @@ if (isset($_GET["id"])) {
                   <p class="current-price">'.$bikeInfo["price"].',-</p>';
             } echo '
               </div>
-              <div class="col col3" style="position:relative">
+              <div class="col col3" style="position:relative">';
+              if ($CORE->isLoggedIn()) {
+                echo '
                 <form action="/bestellen" method="POST">
                   <input type="hidden" name="bikeID" value="'.$bikeInfo["id"].'">
                   <input type="submit" class="block bottom" value="Bestel">
-                </form>
+                </form>';
+              } else {
+                echo '
+                <form action="/bestellen" method="POST">
+                  <input type="hidden" name="noLogin" value="true">
+                  <input type="submit" class="block bottom" value="Bestellen">
+                </form>';
+              } echo '
               </div>
             </div>
             <hr>
@@ -49,7 +61,7 @@ if (isset($_GET["id"])) {
       <div class="col col4-5">
         <div class="card padding">
           <div class="card-content">
-            <img alt="'.$bikeInfo["name"].'" width="100%" src="'.$bikeInfo["imagePath"].'">
+            <img alt="'.$bikeInfo["name"].'" class="bike" src="'.$bikeInfo["imagePath"].'">
           </div>
         </div>
       </div>
@@ -83,7 +95,7 @@ if (isset($_GET["id"])) {
         echo '
             <p class="current-price">'.$bike["price"].',-</p>';
       } echo '
-            <p class="kleuren">Kleuren: '.$bike["colors"].'</p>
+            <p class="small-text">Kleuren: '.$bike["colors"].'</p>
           </div>
         </div>
 ';
