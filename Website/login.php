@@ -37,7 +37,9 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
             <input type="password" name="password" required><br/>
           </div>
           <?php if (isset($_GET["returnUrl"])) { echo '<input type="hidden" name="returnUrl" value="'.$_GET["returnUrl"].'">'; } ?>
-          <input type="submit" class="block" value="Login"><br/><br/>
+          <input type="submit" class="block" value="Login">
+          <hr>
+          <p class="form-below">Nog geen account? Klik <a href="/registreer">hier</a> om er een te maken</p>
         </form>
       </div>
     </div>
