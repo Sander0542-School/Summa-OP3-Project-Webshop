@@ -61,19 +61,19 @@ if ($displayShoppingCart) {
                 </thead>
                 <tbody>';
 
-      foreach ($shoppingCart as $bike) {
-        $bikesPrice = $bikesPrice + (($bike["isAction"] == true ? $bike["actionPrice"] : $bike["price"]) * $bike["quantity"]);
-        $bikesCount = $bikesCount + $bike["quantity"];
+      foreach ($shoppingCart as $cartItem) {
+        $bikesPrice = $bikesPrice + (($cartItem["isAction"] == true ? $cartItem["actionPrice"] : $cartItem["price"]) * $cartItem["quantity"]);
+        $bikesCount = $bikesCount + $cartItem["quantity"];
 
         echo '
                   <tr class="shoppingcart-item">
-                    <td><img src="'.$bike["imagePath"].'" alt="'.$bike["name"].'"></td>
-                    <td>'.$bike["name"].'</td>
-                    <td>&euro;'; if ($bike["isAction"]) {echo $bike["actionPrice"]; } else { echo $bike["price"]; } echo ',-</td>
-                    <td>'.$bike["quantity"].'</td>
+                    <td><img src="'.$cartItem["imagePath"].'" alt="'.$cartItem["name"].'"></td>
+                    <td>'.$cartItem["name"].'</td>
+                    <td>&euro;'; if ($cartItem["isAction"]) {echo $cartItem["actionPrice"]; } else { echo $cartItem["price"]; } echo ',-</td>
+                    <td>'.$cartItem["quantity"].'</td>
                     <td>
                       <form action="/bestellen" method="POST">
-                        <input type="hidden" value="'.$bike["id"].'" name="deleteBike">
+                        <input type="hidden" value="'.$cartItem["id"].'" name="deleteBike">
                         <input type="submit" value="&#10006;">
                       </form>
                     </td>
