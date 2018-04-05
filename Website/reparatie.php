@@ -5,7 +5,7 @@ include "assets/header.php";
 $isLoggedIn = $CORE->isLoggedIn();
 
 if (isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["subject"]) && isset($_POST["message"])) {
-  if ($CORE->newReperation(($isLoggedIn ? $_SESSION["userSession"] : null), $_POST["name"], $_POST["email"], $_POST["subject"], $_POST["message"])) {
+  if ($CORE->newReperation($_POST["name"], $_POST["email"], $_POST["subject"], $_POST["message"])) {
     echo '<div class="messagebox"><h3>Uw reparatie verzoek is verzonden</h3></div>';
   } else {
     echo '<div class="messagebox"><h3>Kon uw reparatie verzoek niet verzenden</h3></div>';

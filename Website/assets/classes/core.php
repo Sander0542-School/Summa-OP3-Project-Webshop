@@ -142,10 +142,9 @@ class CORE
 		}
 	}
 
-	public function newReperation($customerID = null, $name, $email, $subject, $message) {
+	public function newReperation($name, $email, $subject, $message) {
 		try {
-			$stmt = $this->conn->prepare("INSERT INTO reperations (customerID, name, email, subject, message) VALUES (:customerID, :name, :email, :subject, :message);");
-			$stmt->bindparam(":customerID",$customerID);
+			$stmt = $this->conn->prepare("INSERT INTO reperations (name, email, subject, message) VALUES (:name, :email, :subject, :message);");
 			$stmt->bindparam(":name",$name);
 			$stmt->bindparam(":email",$email);
 			$stmt->bindparam(":subject",$subject);
