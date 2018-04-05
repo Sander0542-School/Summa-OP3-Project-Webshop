@@ -25,7 +25,8 @@ if (isset($_GET["id"])) {
             } else {
               echo '
                   <p class="current-price">'.$bikeInfo["price"].',-</p>';
-            } echo '
+            } 
+            echo '
               </div>
               <div class="col col3" style="position:relative">';
               if ($CORE->isLoggedIn()) {
