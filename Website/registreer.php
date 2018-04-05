@@ -77,7 +77,7 @@ if (isset($_POST["firstname"]) && isset($_POST["lastname"]) && isset($_POST["ema
           </div>
           <input type="submit" class="block" value="Registreer">
           <hr>
-          <p class="form-below">Al een account? Klik <a href="/login">hier</a> om in te loggen</p>
+          <p class="form-below"><a href="/login">Al een account? Klik hier om in te loggen</a></p>
         </div>
       </div>
     </form>
