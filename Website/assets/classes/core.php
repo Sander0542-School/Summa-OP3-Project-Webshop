@@ -200,7 +200,7 @@ class CORE
 	}
 
 	public function getShoppingCart() {
-		$stmt = $this->conn->prepare("SELECT shoppingcart.*, products.id as productID products.name, products.brand, products.price, products.actionPrice, products.description, products.colors, products.imagePath, products.model, products.modelYear, IF(actionPrice IS NULL, false, true) as isAction FROM shoppingcart INNER JOIN products ON shoppingcart.productID = products.id WHERE customerID=:customerID");
+		$stmt = $this->conn->prepare("SELECT shoppingcart.*, products.id as productID, products.name, products.brand, products.price, products.actionPrice, products.description, products.colors, products.imagePath, products.model, products.modelYear, IF(actionPrice IS NULL, false, true) as isAction FROM shoppingcart INNER JOIN products ON shoppingcart.productID = products.id WHERE customerID=:customerID");
 		$stmt->execute(array(":customerID"=>$_SESSION['userSession']));
 		$PS = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		if ($stmt->rowCount() == 0) {
